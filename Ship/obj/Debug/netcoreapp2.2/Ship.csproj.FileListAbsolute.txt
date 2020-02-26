@@ -1,0 +1,11 @@
+/Users/Michael.Atkins/Projects/BattleShips/Ship/bin/Debug/netcoreapp2.2/Ship.dll.config
+/Users/Michael.Atkins/Projects/BattleShips/Ship/bin/Debug/netcoreapp2.2/Ship.deps.json
+/Users/Michael.Atkins/Projects/BattleShips/Ship/bin/Debug/netcoreapp2.2/Ship.runtimeconfig.json
+/Users/Michael.Atkins/Projects/BattleShips/Ship/bin/Debug/netcoreapp2.2/Ship.runtimeconfig.dev.json
+/Users/Michael.Atkins/Projects/BattleShips/Ship/bin/Debug/netcoreapp2.2/Ship.dll
+/Users/Michael.Atkins/Projects/BattleShips/Ship/bin/Debug/netcoreapp2.2/Ship.pdb
+/Users/Michael.Atkins/Projects/BattleShips/Ship/obj/Debug/netcoreapp2.2/Ship.csprojAssemblyReference.cache
+/Users/Michael.Atkins/Projects/BattleShips/Ship/obj/Debug/netcoreapp2.2/Ship.AssemblyInfoInputs.cache
+/Users/Michael.Atkins/Projects/BattleShips/Ship/obj/Debug/netcoreapp2.2/Ship.AssemblyInfo.cs
+/Users/Michael.Atkins/Projects/BattleShips/Ship/obj/Debug/netcoreapp2.2/Ship.dll
+/Users/Michael.Atkins/Projects/BattleShips/Ship/obj/Debug/netcoreapp2.2/Ship.pdb
