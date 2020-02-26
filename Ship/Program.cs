@@ -9,6 +9,8 @@ namespace Ship
             IBattleships battleships;
 
             IFiringStrategy firingStrategy = new CheckerboardFiringStrategy();
+
+            IFleetDeployer fleetDeployer = new DefaultFleetOrders();
             
             if (Environment.GetEnvironmentVariable("debug") == null)
             {
@@ -19,7 +21,7 @@ namespace Ship
                 battleships = new BattleshipsMockImpl();
             }
 
-            ShipEngine e = new ShipEngine(battleships, firingStrategy);
+            ShipEngine e = new ShipEngine(battleships, firingStrategy, fleetDeployer);
             e.Run();
         }
     }

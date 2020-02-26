@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Figgle;
 using Newtonsoft.Json;
@@ -13,30 +14,29 @@ namespace Ship
         private IFiringStrategy firingStrategy;
 
         private readonly IFiringStrategy pingKiller;
+
+        private readonly IFleetDeployer fleetDeployer;
        
-        public ShipEngine(IBattleships battleship, IFiringStrategy firingStrategy)
+        public ShipEngine(IBattleships battleship, IFiringStrategy firingStrategy, IFleetDeployer fleetDeployer)
         {
             this.battleship = battleship;
 
             this.pingKiller = firingStrategy;
             this.firingStrategy = pingKiller;
+
+            this.fleetDeployer = fleetDeployer;
         }
 
         public void Run()
         {
-            ShipModel.Ship carrier = new ShipModel.Ship("Graf Zeppelin", ShipModel.ShipType.AircraftCarrier, 0, 0, Direction.South);
-            ShipModel.Ship destroyer = new ShipModel.Ship("Bismark", ShipModel.ShipType.Destroyer, 3, 0, Direction.South);
-            ShipModel.Ship frigate1 = new ShipModel.Ship("Augsburg", ShipModel.ShipType.Frigate, 6, 0, Direction.West);
-            ShipModel.Ship frigate2 = new ShipModel.Ship("Lubeck", ShipModel.ShipType.Frigate, 3, 5, Direction.West);
-            ShipModel.Ship submarine = new ShipModel.Ship("U-96", ShipModel.ShipType.Submarine, 7, 7, Direction.South);
-
-            battleship.PlaceShip(JsonConvert.SerializeObject(carrier));
-            battleship.PlaceShip(JsonConvert.SerializeObject(destroyer));
-            battleship.PlaceShip(JsonConvert.SerializeObject(frigate1));
-            battleship.PlaceShip(JsonConvert.SerializeObject(frigate2));
-            battleship.PlaceShip(JsonConvert.SerializeObject(submarine));
-
             bool hunting = false;
+
+            List<ShipModel.Ship> ships = fleetDeployer.getOrders();
+
+            foreach (ShipModel.Ship ship in ships)
+            {
+                battleship.PlaceShip(JsonConvert.SerializeObject(ship));
+            }
 
             var target = firingStrategy.GetOptimumTarget(battleship.StatusAPI().StateTeamA.TrackingGrid, null);
 
