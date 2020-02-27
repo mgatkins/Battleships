@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
 using Newtonsoft.Json;
+using Polly;
 using ShipModel;
 
 namespace Ship
@@ -131,13 +132,23 @@ namespace Ship
 
             Console.WriteLine("Taking a shot....");
             HttpClient client = new HttpClient();
+
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, GameAPIBaseAddress + "/api/shoot");
             request.Content = new System.Net.Http.StringContent("{'positionX': " + x + ",'positionY': " + y + "}", Encoding.UTF8, "application/json");
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", AccessToken);
 
             Task t = Task.Run(async () =>
             {
-                HttpResponseMessage response = await client.SendAsync(request);
+                // HttpResponseMessage response = await client.SendAsync(request);
+
+                HttpResponseMessage response = await Policy
+                    .HandleResult<HttpResponseMessage>(message => !message.IsSuccessStatusCode)
+                    .WaitAndRetryAsync(3, i => TimeSpan.FromSeconds(2), (result, timeSpan, retryCount, context) =>
+                    {
+                        Console.WriteLine($"Request failed with {result.Result.StatusCode}. Waiting {timeSpan} before next retry. Retry attempt {retryCount}");
+                    })
+                    .ExecuteAsync(() => client.SendAsync(request));
+
                 Console.WriteLine("Call sucessfull = " + response.IsSuccessStatusCode);
                 Console.WriteLine("Result: HTTP{0}", response.StatusCode);
                 Console.WriteLine("Response success/error message = " + response.ReasonPhrase);

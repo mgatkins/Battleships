@@ -18,3 +18,4 @@
 /Users/Michael.Atkins/Projects/BattleShips/Ship/obj/Debug/netcoreapp3.1/Ship.pdb
 /Users/Michael.Atkins/Projects/BattleShips/Ship/obj/Debug/netcoreapp3.1/Ship.csprojAssemblyReference.cache
 /Users/Michael.Atkins/Projects/BattleShips/Ship/bin/Debug/netcoreapp3.1/Figgle.dll
+/Users/Michael.Atkins/Projects/BattleShips/Ship/bin/Debug/netcoreapp3.1/Polly.dll
