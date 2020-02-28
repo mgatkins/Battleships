@@ -14,11 +14,11 @@ namespace Ship
         {
             List<ShipModel.Ship> ships = new List<ShipModel.Ship>();
 
-            ships.Add(new ShipModel.Ship("Graf Zeppelin", ShipModel.ShipType.AircraftCarrier, 0, 0, Direction.South));
-            ships.Add(new ShipModel.Ship("Bismark", ShipModel.ShipType.Destroyer, 3, 0, Direction.South));
-            ships.Add(new ShipModel.Ship("Augsburg", ShipModel.ShipType.Frigate, 6, 0, Direction.West));
-            ships.Add(new ShipModel.Ship("Lubeck", ShipModel.ShipType.Frigate, 3, 5, Direction.West));
-            ships.Add(new ShipModel.Ship("U-96", ShipModel.ShipType.Submarine, 7, 7, Direction.South));
+            ships.Add(new ShipModel.Ship("Graf Zeppelin", ShipModel.ShipType.AircraftCarrier, 0, 0, Direction.South,1));
+            ships.Add(new ShipModel.Ship("Bismark", ShipModel.ShipType.Destroyer, 3, 0, Direction.South,2));
+            ships.Add(new ShipModel.Ship("Augsburg", ShipModel.ShipType.Frigate, 6, 0, Direction.West,3));
+            ships.Add(new ShipModel.Ship("Lubeck", ShipModel.ShipType.Frigate, 3, 5, Direction.West,4));
+            ships.Add(new ShipModel.Ship("U-96", ShipModel.ShipType.Submarine, 7, 7, Direction.South,5));
 
             return ships;
         }
