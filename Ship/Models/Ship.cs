@@ -22,18 +22,21 @@ namespace ShipModel
 
         public int PositionY { get; set; }
 
+        public int shipIndex { get; set; }
+
         public int Length
         {
             get { return (int)ShipType; }
         }
   
-        public Ship(string name, ShipType shipType, int x, int y, Direction facing)
+        public Ship(string name, ShipType shipType, int x, int y, Direction facing, int index)
         {
             Name = name;
             ShipType = shipType;
             PositionX = x;
             PositionY = y;
             Facing = facing;
+            shipIndex = index;
 
             // Set the damage counter to zero.
             Damage = new bool[(int)shipType];

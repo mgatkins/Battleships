@@ -44,8 +44,8 @@ namespace Ship
                         hitDirection = direction.ToString();
 
                         // Force swap if we are at the edge of the board
-                        if ((direction == Direction.South && lastShot.PositionY == 9) ||
-                            (direction == Direction.North && lastShot.PositionY == 0) ||
+                        if ((direction == Direction.South && lastShot.PositionY == 0) ||
+                            (direction == Direction.North && lastShot.PositionY == 9) ||
                             (direction == Direction.East && lastShot.PositionX == 9) ||
                             (direction == Direction.West && lastShot.PositionY == 0))
                         {
@@ -137,19 +137,19 @@ namespace Ship
 
             if (direction == Direction.South)
             {
-                if (searchLocation.PositionY < 9)
+                if (searchLocation.PositionY > 0)
                 {
                     target.PositionX = searchLocation.PositionX;
-                    target.PositionY = searchLocation.PositionY+1;
+                    target.PositionY = searchLocation.PositionY-1;
                 }
             }
 
             if (direction == Direction.North)
             {
-                if (searchLocation.PositionY > 0)
+                if (searchLocation.PositionY < 9)
                 {
                     target.PositionX = searchLocation.PositionX;
-                    target.PositionY = searchLocation.PositionY-1;
+                    target.PositionY = searchLocation.PositionY+1;
                 }
             }
 

@@ -38,7 +38,9 @@ namespace Ship
                 battleship.PlaceShip(JsonConvert.SerializeObject(ship));
             }
 
-            var target = firingStrategy.GetOptimumTarget(battleship.StatusAPI().StateTeamA.TrackingGrid, null);
+            //Environment.Exit(0);
+
+            var target = firingStrategy.GetOptimumTarget(battleship.StatusAPI().StateTeamB.TrackingGrid, null);
 
             bool hit = battleship.Shoot(target.PositionX, target.PositionY);
 
@@ -49,7 +51,7 @@ namespace Ship
             // Switch to hunter killer
             if (hit)
             {
-                firingStrategy = new HunterKillerFiringStrategy(status.StateTeamA.TrackingGrid.Squares[target.PositionX, target.PositionY]);
+                firingStrategy = new HunterKillerFiringStrategy(status.StateTeamB.TrackingGrid.Squares[target.PositionX, target.PositionY]);
                 hunting = true;
             }
 
@@ -58,11 +60,10 @@ namespace Ship
             {
                 while (true)
                 {
-                    target = firingStrategy.GetOptimumTarget(battleship.StatusAPI().StateTeamA.TrackingGrid, hunting == true ? status.StateTeamA.TrackingGrid.Squares[target.PositionX, target.PositionY] : null);
+                    target = firingStrategy.GetOptimumTarget(battleship.StatusAPI().StateTeamB.TrackingGrid, hunting == true ? status.StateTeamA.TrackingGrid.Squares[target.PositionX, target.PositionY] : null);
 
                     if (target.PositionX == -1 && !hunting)
                     {
-                        
                         Console.WriteLine("Firing solutions exhausted");
                         break;
                     }
@@ -78,7 +79,7 @@ namespace Ship
 
                     if (hit && !hunting)
                     {
-                        firingStrategy = new HunterKillerFiringStrategy(status.StateTeamA.TrackingGrid.Squares[target.PositionX, target.PositionY]);
+                        firingStrategy = new HunterKillerFiringStrategy(status.StateTeamB.TrackingGrid.Squares[target.PositionX, target.PositionY]);
                         hunting = true;
                     }
                     else

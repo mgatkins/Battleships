@@ -24,7 +24,7 @@ namespace ShipModel
 
             builder.AppendLine();
 
-            for (int y = 0; y < 10; y++)
+            for (int y = 9; y >= 0; y--)
             {
                 for (int x = 0; x < 10; x++)
                 {
