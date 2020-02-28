@@ -39,6 +39,7 @@ namespace Ship
             }
 
             //Environment.Exit(0);
+            //Environment.Exit(0);
 
             var target = firingStrategy.GetOptimumTarget(battleship.StatusAPI().StateTeamB.TrackingGrid, null);
 
@@ -60,7 +61,7 @@ namespace Ship
             {
                 while (true)
                 {
-                    target = firingStrategy.GetOptimumTarget(battleship.StatusAPI().StateTeamB.TrackingGrid, hunting == true ? status.StateTeamA.TrackingGrid.Squares[target.PositionX, target.PositionY] : null);
+                    target = firingStrategy.GetOptimumTarget(battleship.StatusAPI().StateTeamB.TrackingGrid, hunting == true ? status.StateTeamB.TrackingGrid.Squares[target.PositionX, target.PositionY] : null);
 
                     if (target.PositionX == -1 && !hunting)
                     {
@@ -95,11 +96,11 @@ namespace Ship
 
                     Console.WriteLine(status.ToString());
 
-                    if (status.StateTeamA.Score == 17)
-                    {
-                        Console.WriteLine("All enemy vessels destroyed, a glorious celebration awaits");
-                        break;
-                    }
+                    //if (status.StateTeamA.Score == 17)
+                    //{
+                    //    Console.WriteLine("All enemy vessels destroyed, a glorious celebration awaits");
+                    //    break;
+                    //}
 
                     Console.WriteLine("{0} - Ship standing by for orders...", DateTime.Now.ToString());
                     await Task.Delay(500);

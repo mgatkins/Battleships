@@ -20,7 +20,7 @@ namespace ShipModel
             StringBuilder builder = new StringBuilder();
 
             builder.AppendLine("Game State: ");
-            builder.AppendLine("Shots / Score ").Append(StateTeamA.ShotsYouHaveFired).Append(" / ").Append(StateTeamA.Score);
+            builder.AppendLine("Shots / Score ").Append(StateTeamB.ShotsYouHaveFired).Append(" / ").Append(StateTeamB.Score);
 
             builder.AppendLine();
 
@@ -28,13 +28,13 @@ namespace ShipModel
             {
                 for (int x = 0; x < 10; x++)
                 {
-                    if (StateTeamA.TrackingGrid.Squares[x, y].Marked)
-                    {
-                        builder.Append("0 ");
-                    }
-                    else if (StateTeamA.TrackingGrid.Squares[x, y].HitPeg)
+                    if (StateTeamB.TrackingGrid.Squares[x, y].HitPeg)
                     {
                         builder.Append("X ");
+                    }
+                    else if (StateTeamB.TrackingGrid.Squares[x, y].Marked)
+                    {
+                        builder.Append("0 ");
                     }
                     else
                     {

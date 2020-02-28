@@ -31,19 +31,19 @@ namespace Ship
             Console.WriteLine("Firing {0},{1}", x, y);
             bool hit = ships.Squares[x, y].CurrentOccupier != null;
 
-            mockState.StateTeamA.ShotsYouHaveFired++;
+            mockState.StateTeamB.ShotsYouHaveFired++;
 
             GridSquare square = new GridSquare
             {
                 PositionX = x,
                 PositionY = y,
-                Marked = hit == true ? false : true,
+                Marked = true,
                 HitPeg = hit
             };
 
-            mockState.StateTeamA.Score += Convert.ToInt16(hit);
+            mockState.StateTeamB.Score += Convert.ToInt16(hit);
 
-            mockState.StateTeamA.TrackingGrid.Squares[x, y] = square;
+            mockState.StateTeamB.TrackingGrid.Squares[x, y] = square;
             return hit;
         }
 
