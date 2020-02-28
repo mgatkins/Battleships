@@ -72,7 +72,7 @@ namespace Ship
                 
                 if (potentialTarget.PositionX != -1)
                 {
-                    if (!grid.Squares[potentialTarget.PositionX, potentialTarget.PositionY].Marked && !grid.Squares[potentialTarget.PositionX, potentialTarget.PositionY].HitPeg)
+                    if (!grid.Squares[potentialTarget.PositionX, potentialTarget.PositionY].HitPeg && !grid.Squares[potentialTarget.PositionX, potentialTarget.PositionY].Marked)
                     {
                         break;
                     }
